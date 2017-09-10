@@ -1,0 +1,14 @@
+{
+    "name": "valera33/stuudium-notification",
+    "authors": [
+        {
+            "name": "Valeri R",
+            "email": "v.ratmann@gmail.com"
+        }
+    ],
+    "require": {
+        "swiftmailer/swiftmailer": "^5.4",
+        "vlucas/phpdotenv": "^2.4",
+        "jenssegers/blade": "^1.1"
+    }
+}
