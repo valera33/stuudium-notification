@@ -150,7 +150,7 @@ function sendtMail($from, $to, $subject, $message) {
 }
 
 function prepareDirectory($path) {
-	if (!file_exists($tmpDir)) {
+	if (!file_exists($path)) {
 		mkdir($path, 0777, true);
 	}
 }
