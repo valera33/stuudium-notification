@@ -26,7 +26,7 @@ $dotenv->load();
 
 $recipients = $debug ? [$_ENV['DEBUG_RECIPIENT']] : json_decode($_ENV['RECIPIENTS']);
 
-if (!$debug) {
+if (!$debug || !file_exists($dataFile)) {
 	$data = loadPageFromStuudium([
 		'url' => $_ENV['STUUDIUM_DATA_URL'],
 		'loginUrl' => $_ENV['STUUDIUM_LOGIN_URL'],
