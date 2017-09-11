@@ -36,7 +36,7 @@ if (!$debug || !file_exists($dataFile)) {
 	]);
 
 	if (empty($data)) {
-		throw new Exception('Something went wrong... didn\'t get data', 1);
+		throw new Exception('Something went wrong... didn\'t get the data', 1);
 	}
 
 	file_put_contents($resultFile, $data);
