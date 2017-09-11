@@ -35,6 +35,10 @@ if (!$debug || !file_exists($dataFile)) {
 		'cookeFilePath' => $cookieFile,
 	]);
 
+	if (empty($data)) {
+		throw new Exception('Something went wrong... didn\'t get data', 1);
+	}
+
 	file_put_contents($resultFile, $data);
 } else {
 	echo 'Running in debug mode...' . PHP_EOL;
