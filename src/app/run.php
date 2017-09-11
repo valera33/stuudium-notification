@@ -12,7 +12,7 @@ require $rootDir . '/vendor/autoload.php';
 require 'functions.php';
 
 $options = getopt('', array('debug::'));
-$debug = iiset($options['debug']) && $options['debug'] === 'true';
+$debug = isset($options['debug']) && $options['debug'] === 'true';
 
 prepareIni($tmpDir, $debug);
 prepareDirectory($tmpDir);
