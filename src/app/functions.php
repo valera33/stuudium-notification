@@ -1,8 +1,13 @@
 <?php
 
-function prepareIni($tmpDir) {
-	ini_set('display_errors', 0);
+function prepareIni($tmpDir, $debug) {
 	ini_set('error_reporting', E_ALL);
+
+	if ($debug) {
+		return;
+	}
+
+	ini_set('display_errors', 0);
 	ini_set('log_errors', 1);
 	ini_set('error_log', $tmpDir . '/error-' . date('Y-m') . '.log');
 }

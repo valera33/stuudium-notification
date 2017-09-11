@@ -11,15 +11,15 @@ $cacheDir = $tmpDir . '/cache';
 require $rootDir . '/vendor/autoload.php';
 require 'functions.php';
 
-prepareIni($tmpDir);
+$options = getopt('', array('debug::'));
+$debug = iiset($options['debug']) && $options['debug'] === 'true';
+
+prepareIni($tmpDir, $debug);
 prepareDirectory($tmpDir);
 prepareDirectory($cacheDir);
 
 use Jenssegers\Blade\Blade;
 $blade = new Blade($templateDir, $cacheDir);
-
-$options = getopt('', array('debug::'));
-$debug = $options['debug'] === 'true';
 
 $dotenv = new Dotenv\Dotenv($rootDir . '/src/config');
 $dotenv->load();
