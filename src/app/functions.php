@@ -31,6 +31,10 @@ function loadPageFromStuudium($requestData) {
 	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 0);
 
+	if (isset($_ENV['CURL_INTERFACE'])) {
+		curl_setopt($curlh, CURLOPT_INTERFACE, $_ENV['CURL_INTERFACE']);
+	}
+
 	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
 	curl_setopt($ch, CURLOPT_POST, 1);
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
