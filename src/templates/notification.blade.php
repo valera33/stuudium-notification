@@ -6,8 +6,8 @@ Puudumised kokku muutunud: {{ $absenceTotal['from'] }} -> {{ $absenceTotal['to']
 <br>
 @endif
 
-@if (isset($absenceTotal))
-Puudumised pohjuseta muutunud: {{ $absenceTotal['from'] }} -> {{ $absenceTotal['to'] }}
+@if (isset($absenceBad))
+Puudumised pohjuseta muutunud: {{ $absenceBad['from'] }} -> {{ $absenceBad['to'] }}
 <br><br>
 @endif
 

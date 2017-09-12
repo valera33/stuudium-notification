@@ -110,7 +110,7 @@ function prepareLetter($currentData, $previousData, $blade, $debug) {
 	}
 
 	if ($currentData['absence']['bad'] != $previousData['absence']['bad'] || $debug) {
-		$data['absenceTotal'] = ['from' => $previousData['absence']['bad'], 'to' => $currentData['absence']['bad']];
+		$data['absenceBad'] = ['from' => $previousData['absence']['bad'], 'to' => $currentData['absence']['bad']];
 	}
 
 	if ($currentData['marks'] != $previousData['marks'] || $debug) {
