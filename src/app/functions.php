@@ -105,15 +105,17 @@ function prepareLetter($currentData, $previousData, $blade, $debug) {
 		'url' => $_ENV['STUUDIUM_URL'],
 	];
 
-	if ($currentData['absence']['all'] != $previousData['absence']['all'] || $debug) {
+	if (!isset($previousData) || $currentData['absence']['all'] != $previousData['absence']['all'] || $debug) {
 		$data['absenceTotal'] = ['from' => $previousData['absence']['all'], 'to' => $currentData['absence']['all']];
 	}
 
-	if ($currentData['absence']['bad'] != $previousData['absence']['bad'] || $debug) {
+	if (!isset($previousData) || $currentData['absence']['bad'] != $previousData['absence']['bad'] || $debug) {
 		$data['absenceBad'] = ['from' => $previousData['absence']['bad'], 'to' => $currentData['absence']['bad']];
 	}
 
-	if ($currentData['marks'] != $previousData['marks'] || $debug) {
+	if (!isset($previousData)) {
+		$data['marks'] = $currentData['marks'];
+	} elseif ($currentData['marks'] != $previousData['marks'] || $debug) {
 		$previousSignatures = array_column($previousData['marks'], 'signature');
 
 		foreach ($currentData['marks'] as $mark) {
