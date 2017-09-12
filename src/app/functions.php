@@ -88,7 +88,7 @@ function parseDashboard($data) {
 		}
 
 		$signature = md5($mark . $notes . $lesson);
-		$result['marks'][] = array('mark' => $mark, 'notes' => $notes, 'lesson' => $lesson, 'signature' => $signature);
+		$result['marks'][] = array('mark' => (int) $mark, 'notes' => $notes, 'lesson' => $lesson, 'signature' => $signature);
 	}
 
 	preg_match('/<td>Puudumised kokku<\/td>[^<>]*<td class="nr">(.*)<\/td>[^<>]*<td class="nr unexcused">(.*)<\/td>/isU', $data, $matches);
@@ -142,7 +142,7 @@ function sendtMail($from, $to, $subject, $message) {
 	}
 
 	// Mail
-	if ($_ENV['MAIL_DRIVER'] === 'smtp') {
+	if ($_ENV['MAIL_DRIVER'] === 'mail') {
 		$transport = Swift_MailTransport::newInstance();
 	}
 
