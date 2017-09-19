@@ -87,8 +87,15 @@ function parseDashboard($data) {
 			$lesson = '';
 		}
 
+		if (preg_match('/<span class=\"lesson_date\">([^<>]*)<\/span>/isU', $entry, $m5)) {
+			$date = trim(strip_tags($m5[1]));
+		} else {
+			$date = '';
+		}
+
 		$signature = md5($mark . $notes . $lesson);
-		$result['marks'][] = array('mark' => (int) $mark, 'notes' => $notes, 'lesson' => $lesson, 'signature' => $signature);
+		$result['marks'][] = array('mark' => $mark, 'nr' => (int) $mark, 'date' => $date, 'notes' => $notes,
+			'lesson' => $lesson, 'signature' => $signature);
 	}
 
 	preg_match('/<td>Puudumised kokku<\/td>[^<>]*<td class="nr">(.*)<\/td>[^<>]*<td class="nr unexcused">(.*)<\/td>/isU', $data, $matches);
