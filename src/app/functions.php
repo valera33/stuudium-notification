@@ -60,7 +60,7 @@ function parseDashboard($data) {
 	foreach ($matches[1] as $entry) {
 		// mark
 		if (preg_match('/<span class=\"grade[^\"]*"><span[^<>]*>(.+)<\/span>/isU', $entry, $m1)) {
-			$mark = trim($m1[1]);
+			$mark = trim(strip_tags($m1[1]));
 		} else {
 			$mark = '';
 		}
@@ -87,7 +87,7 @@ function parseDashboard($data) {
 			$lesson = '';
 		}
 
-		if (preg_match('/<span class=\"lesson_date\">([^<>]*)<\/span>/isU', $entry, $m5)) {
+		if (preg_match('/<span class=\"lesson_date\">([^<>]*):<\/span>/isU', $entry, $m5)) {
 			$date = trim(strip_tags($m5[1]));
 		} else {
 			$date = '';
