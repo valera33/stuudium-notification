@@ -59,10 +59,15 @@ function parseDashboard($data) {
 
 	foreach ($matches[1] as $entry) {
 		// mark
-		if (preg_match('/<span class=\"grade[^\"]*"><span[^<>]*>(.+)<\/span>/isU', $entry, $m1)) {
+		if (preg_match('/<span class=\"grade_inactive[^\"]*">(.+)<\/span>.*<span class=\"grade_active[^\"]*">(.+)<\/span>/isU', $entry, $m1)) {
+			$mark = trim(strip_tags($m1[2]));
+			$prev_mark = trim(strip_tags($m1[1]));
+		} elseif (preg_match('/<span class=\"grade[^\"]*"><span[^<>]*>(.+)<\/span>/isU', $entry, $m1)) {
 			$mark = trim(strip_tags($m1[1]));
+			$prev_mark = '';
 		} else {
 			$mark = '';
+			$prev_mark = '';
 		}
 
 		if (preg_match('/<span class=\"grade_notes\">([^<>]*)<\/span>/isU', $entry, $m2)) {
@@ -94,8 +99,8 @@ function parseDashboard($data) {
 		}
 
 		$signature = md5($mark . $notes . $lesson);
-		$result['marks'][] = array('mark' => $mark, 'nr' => (int) $mark, 'date' => $date, 'notes' => $notes,
-			'lesson' => $lesson, 'signature' => $signature);
+		$result['marks'][] = array('mark' => $mark, 'prev_mark' => $prev_mark, 'nr' => (int) $mark, 'date' => $date,
+			'notes' => $notes, 'lesson' => $lesson, 'signature' => $signature);
 	}
 
 	preg_match('/<td>Puudumised kokku<\/td>[^<>]*<td class="nr">(.*)<\/td>[^<>]*<td class="nr unexcused">(.*)<\/td>/isU', $data, $matches);

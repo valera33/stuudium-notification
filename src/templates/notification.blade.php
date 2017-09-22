@@ -14,6 +14,9 @@ Puudumised pohjuseta muutunud: {{ $absenceBad['from'] }} -> {{ $absenceBad['to']
 @if (isset($marks) && count($marks)>0)
 <br><b>Hinnad muutunud:</b><br>
 @foreach ($marks as $mark)
+    @if ($mark['prev_mark']!=='')
+      <span style="color: #808080"> {{ $mark['prev_mark'] }}/</span>
+    @endif
     @if ((int)$mark['nr'] === 5)
       <span style="color: #008000">
     @elseif ($mark['nr'] === 4)
@@ -23,13 +26,17 @@ Puudumised pohjuseta muutunud: {{ $absenceBad['from'] }} -> {{ $absenceBad['to']
     @else
       <span style="color: #FF0000; font-weight: bold;">
     @endif
-    {{ $mark['mark'] }}</span> {{ $mark['lesson'] }} @if (!empty($mark['notes'])) ({{ $mark['notes']}}) @endif {{ $mark['date'] }}<br>
+    {{ $mark['mark'] }}</span> {{ $mark['lesson'] }} @if (!empty($mark['notes'])) ({{ $mark['notes']}}) @endif
+    <span style="color: #808080"> {{ $mark['date'] }} </span><br>
 @endforeach
 @endif
 
 @if (isset($previousMarks) && count($previousMarks)>0)
 <br><b>Eelmised Hinnad:</b><br>
 @foreach ($previousMarks as $mark)
+    @if (!is_empty($mark['prev_mark']))
+      <span style="color: #808080"> {{ $mark['prev_mark'] }}/</span>
+    @endif
     @if ($mark['nr'] === 5)
       <span style="color: #008000">
     @elseif ($mark['nr'] === 4)
@@ -39,7 +46,8 @@ Puudumised pohjuseta muutunud: {{ $absenceBad['from'] }} -> {{ $absenceBad['to']
     @else
       <span style="color: #FF0000; font-weight: bold;">
     @endif
-    {{ $mark['mark'] }}</span> {{ $mark['lesson'] }} @if (!empty($mark['notes'])) ({{ $mark['notes']}}) {{ $mark['date'] }}@endif<br>
+    {{ $mark['mark'] }}</span> {{ $mark['lesson'] }} @if (!empty($mark['notes'])) ({{ $mark['notes']}}) @endif
+    <span style="color: #808080"> {{ $mark['date'] }} </span>
 @endforeach
 @endif
 
