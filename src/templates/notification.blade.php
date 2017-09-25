@@ -34,7 +34,7 @@ Puudumised pohjuseta muutunud: {{ $absenceBad['from'] }} -> {{ $absenceBad['to']
 @if (isset($previousMarks) && count($previousMarks)>0)
 <br><b>Eelmised Hinnad:</b><br>
 @foreach ($previousMarks as $mark)
-    @if (!is_empty($mark['prev_mark']))
+    @if ($mark['prev_mark']!=='')
       <span style="color: #808080"> {{ $mark['prev_mark'] }}/</span>
     @endif
     @if ($mark['nr'] === 5)
